@@ -1,0 +1,545 @@
+html {
+    overflow-x: hidden;
+    font-family: Cambria, Georgia, serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #333;
+}
+
+p {
+    line-height: 1.6;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Header and Footer */
+
+header {
+    color: #fff;
+    padding: 20px;
+    width: 100%;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    position: fixed
+    bottom: 0;
+}
+
+/* Navigation */
+
+nav {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    width: 100%;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+/* Form Styles */
+
+form {
+    margin: 20px 0;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.product_display {
+    display: flex;
+}
+/* Product Card */
+
+.product-card {
+    width: 550px;
+    vertical-align: top;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.product-card img {
+    width: 100%;
+    height: 500px; /* Set a specific height for uniformity */
+    object-fit: cover;
+}
+
+.price {
+    font-weight: bold;
+    color: #007bff;
+    margin-top: 8px;
+    display: block;
+}
+
+
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Price and Button Styles */
+
+.price {
+    font-weight: bold;
+    color: #007bff;
+    margin-top: 8px;
+    display: block;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border: solid black 1px;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Store Container and Products */
+
+.store-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.store-container h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.user-info {
+    display: flex;
+    justify-content: flex-end
+}
+.profile_picture {
+    width: 25px;
+    height: 25px;
+    margin: 15px 0px 0px 5px;
+}
+.cart_image {
+    width: 25px;
+    height: 25px;
+    margin: 15px 0px 0px 5px;
+}
+.navbar {
+    width: 100%
+    display: flex;
+}
+.mainpage_link, .product_create_link {
+    text-decoration: none;
+    font-size: 32px;
+    color: black;
+    margin-right: 20px;
+}
+.cart_product {
+    display: flex;
+}
+.product_cartimg {
+    width: 100px;
+    height: 100px;
+    margin: 0px 20px 0px 0px;
+}
+.cart_product_name {
+    margin: 0px;
+    font-size: 24px;
+}
+.cart_quantity_change {
+    display: flex;
+    margin: 0px 0px 0px 35px;
+}
+.cart_add_item {
+    text-decoration: none;
+    height: 18px;
+    font-size: 24px;
+    margin: 0px 0px 0px 10px;
+}
+.cart_remove_item {
+    text-decoration: none;
+    font-size: 24px;
+    height: 18px;
+    margin: 0px 10px 0px 0px;
+}
+.cart_item_quantity {
+    margin: 2px 0px 0px 0px;
+}
+.cart_total_quantity {
+    text-align: left;
+    font-size: 24px;
+}
+
+#change-product-btn {
+    margin-top: 20px;
+    margin: auto;
+}
+.search_form {
+    display: flex;
+    width: 300px;
+    height: 45px;
+}
+.search_form button {
+    margin-left: 15px;
+    height: 35px;
+}
+.product-list {
+    flex-wrap: wrap;
+    margin: auto;
+}
+.switch {
+    text-align: right;
+}
+.switch button {
+    display: inline-block;
+    padding: 4px 8px;
+    background-color: white;
+    color: #fff;
+    text-decoration: none;
+    border: solid black 1px;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+.switch button:hover {
+    background-color: gray
+}
+.slider-img, .list-img {
+    width: 20px;
+    height: 20px;
+}
+.item-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filters {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 160px;
+    height: 600px;
+}
+#min_price, #max_price {
+    margin: auto;
+    width: 100px;
+}
+.size_div {
+    display: flex;
+    height: 20px;
+}
+
+.filter-option {
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.filter-option label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.filter-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.size-options {
+    display: flex;
+    align-items: center;
+}
+/* Style for individual size checkbox and label */
+.size_div {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+/* Hide the default checkbox */
+.styled-checkbox {
+    opacity: 0;
+    position: absolute;
+}
+
+/* Style for custom checkbox design */
+.styled-checkbox + .checkbox-label:before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid #888;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+/* Style for checked checkbox */
+.styled-checkbox:checked + .checkbox-label:before {
+    background-color: #2196F3;
+    border-color: #2196F3;
+}
+
+/* Hover style for checkbox */
+.styled-checkbox:hover + .checkbox-label:before {
+    border-color: #555;
+}
+
+.size-options input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Styles for different elements inside the item card */
+.item-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.item-category,
+.item-size {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.item-description {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.item-img {
+    width: 400px;
+    height 400px;
+}
+
+.item-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff; /* Change this to your preferred color */
+}
+/* Slick Carousel Styles */
+/* Add custom CSS for your slider */
+.slick-slider {
+    width: 60%;
+    margin: auto;
+}
+
+.item-slider {
+    width: 30%;
+    margin-left: 25px;
+    margin-right: 0px;
+}
+
+
+
+/* Optional: Style for dots navigation */
+.slick-dots {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Optional: Customize dot appearance */
+.slick-dots li button {
+    font-size: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #bbb;
+    opacity: 0.7;
+}
+
+/* Optional: Style active dot */
+.slick-dots li.slick-active button {
+    background-color: #333;
+    opacity: 1;
+}
+.slick-prev,
+.slick-next {
+    font-size: 24px; /* Set the font size */
+    color: #fff; /* Change the arrow color */
+    background: #333; /* Background color of the arrows */
+    width: 110px; /* Set the width */
+    height: 70px; /* Set the height */
+    border-radius: 25%; /* Create a circular shape */
+    text-align: center; /* Center the arrow text */
+    line-height: 40px; /* Center the arrow vertically */
+    margin-bottom: 25px;
+}
+
+/* Optional: Hover effect for the arrows */
+.slick-prev:hover,
+.slick-next:hover {
+    background: #555; /* Change background color on hover */
+    cursor: pointer; /* Change cursor on hover */
+}
+
+/* Form container */
+.product-form {
+  max-width: 500px; /* Adjust the max-width as needed */
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+/* Form groups */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Labels */
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Input and Select fields */
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* File input */
+input[type="file"] {
+  width: auto; /* Allow the width to be determined by the button */
+}
+
+/* Submit button */
+input[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.custom-file-upload {
+    border: 2px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: #f8f8f8;
+    color: #333;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+.custom-file-upload:hover {
+    background-color: #e0e0e0;
+}
+
+/* Styling for the file input (hidden) */
+#imageInput {
+    display: none;
+}
+
+/* Style the upload button */
+button {
+    /* Add your button styles here */
+}
+
+.product-info,
+.image-upload {
+    margin-bottom: 20px;
+}
+
+.image-form {
+    margin-bottom: 10px;
+}
+
+#add-more-images {
+    display: block;
+    margin-top: 10px;
+}
+.cart_product_detail_link {
+    text-decoration: none;
+    color: black;
+}
+.profile_link {
+    text-decoration: none;
+    color: black;
+    font-size: 32px;
+}
+.product_user {
+    display: flex;
+    justify-content: flex-end;
+    height: 150px;
+    /* Add any additional styling for the container */
+}
+
+.profile_picture {
+    display: none; /* Hide by default */
+}
+
+.profile_picture.show {
+    display: block; /* Show when the image exists */
+}
+
+.profile_picture img {
+    width: 25px;
+    height: 25px;
+    /* Add any additional styling for the image */
+}
+#sell, #auction {
+    color: black;
+    background-color: white;
+}

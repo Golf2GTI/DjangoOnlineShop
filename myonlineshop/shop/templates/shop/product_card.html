@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'shop/style.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="product-card">
+    <h3>{{ product.name }}</h3>
+    <span class="price">${{ product.price }}</span>
+    <p>{{ product.description }}</p>
+    <!-- Display each image associated with the product -->
+    {% for image in product.productimage_set.all %}
+        <img src="{{ image.image.url }}" alt="{{ product.name }} Image">
+    {% endfor %}
+    <a href="{% url 'add_to_cart' product_id=product.id %}" class="btn">Add to Cart</a>
+</div>
+</body>
+</html>

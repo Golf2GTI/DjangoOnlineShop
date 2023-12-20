@@ -1,0 +1,32 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% block content %}
+<div class="store-container">
+  <h1>Your Cart</h1>
+  <p class="cart_total_quantity">Items in total: {{ total_quantity }}</p>
+  {% for item in cart.cartitem_set.all %}
+    <div class="cart_product">
+            {% with product_image=item.product.productimage_set.first %}
+        {% if product_image %}
+          <img class="product_cartimg"src="{{ product_image.image.url }}" alt="{{ item.product.name }} Image">
+        {% else %}
+          <!-- Display a placeholder image if no images are available -->
+          <img src="{% static 'placeholder_image.png' %}" alt="Placeholder Image">
+        {% endif %}
+      {% endwith %}
+      <a class="cart_product_detail_link" href="{% url 'product_detail' item.product.id  %}">
+      <div class="cart_product_info">
+      <h3 class="cart_product_name">{{ item.product.name }}</h3>
+      <p>{{ item.product.description }}</p>
+      <p> Total: {{ item.total_price }}</p>
+      </div>
+      </a>
+      <div class="cart_quantity_change">
+      <a class="cart_remove_item"href="{% url 'remove_from_cart' product_id=item.product.id %}">-</a>
+      <p class="cart_item_quantity">{{ item.quantity }}</p>
+      <a class="cart_add_item" href="{% url 'add_to_cart' product_id=item.product.id %}">+</a>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

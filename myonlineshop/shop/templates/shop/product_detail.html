@@ -1,0 +1,60 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <div class="item-card">
+    <p class="item-auction-type">Type: {{ product.auction_type }}</p>
+    <h1 class="item-name">{{ product.name }}</h1>
+    <p class="item-category">Category: {{ product.category }}</p>
+    <p class="item-size">Size: {{ product.size }}</p>
+    <div class="item-slider slick-slider" id="slider">
+    {% for product_image in product.productimage_set.all %}
+        <img class="item-img" src="{{ product_image.image.url }}" alt="product-img">
+    {% endfor %}
+    </div>
+    <p class="item-description">{{ product.description }}</p>
+       {% if product.auction_type == 'auction' %}
+        <!-- Display the bid form only for auction-type products -->
+        {% if highest_bid %}
+            <p class="item-current-bid">Current bid: ${{ highest_bid.bid_amount }}</p>
+        {% endif %}
+        <form class="auction-form" method="post" action="{% url 'product_detail' product.id %}">
+            {% csrf_token %}
+            {{ bid_form.as_p }} <!-- Render the bid form fields -->
+            <button type="submit">Place Bid</button>
+        </form>
+{% endif %}
+    <p class="item-price">Start bid: ${{ product.price }}</p>
+    <p class="item-tags">Tags: {{ product.tags }}</p>
+    {% if product.category == 'Pants' %}
+      {% if product.outseam or product.inseam or product.waist or product.bottom %}
+      <p class="item-measurements">Measurements</p>
+      {% endif %}
+      {% if product.outseam %}
+        <p class="item-outseam">Outseam: {{ product.outseam }}</p>
+      {% endif %}
+      {% if product.inseam %}
+        <p class="item-inseam">Inseam: {{ product.inseam }}</p>
+      {% endif %}
+      {% if product.waist %}
+        <p class="item-waist">Waist: {{ product.waist }}</p>
+      {% endif %}
+      {% if product.bottom %}
+        <p class="item-bottom">Bottom: {{ product.bottom }}</p>
+      {% endif %}
+    {% elif product.category == 'Jacket' or product.category == 'Sweatshirts & Hoodies' or product.category == 'Polo' %}
+      {% if product.chest or product.length or product.sleeve %}
+      <p class="item-measurements">Measurements</p>
+      {% endif %}
+      {% if product.chest %}
+        <p class="item-chest">Chest: {{ product.chest }}</p>
+      {% endif %}
+      {% if product.length %}
+        <p class="item-length">Length: {{ product.length }}</p>
+      {% endif %}
+      {% if product.sleeve %}
+        <p class="item-sleeve">Sleeve: {{ product.sleeve }}</p>
+      {% endif %}
+    {% endif %}
+    <!-- Add more conditions for other categories -->
+  </div>
+{% endblock %}

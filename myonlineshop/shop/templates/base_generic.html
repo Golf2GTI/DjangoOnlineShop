@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Online Shop{% endblock %}</title>
+    <!-- Load jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Load Slick Carousel -->
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <!-- Load other scripts -->
+    <script src="{% static 'scripts.js' %}"></script>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+        <a class="mainpage_link" href="{% url 'product_list' %}">My Online Shop</a>
+        <a class="product_create_link"href="{% url 'product_create' %}">Create Product</a>
+        </div>
+    </header>
+
+    <section>
+        {% block content %}{% endblock %}
+    </section>
+
+    <footer>
+        <p>&copy; {% now "Y" %} My Online Shop</p>
+    </footer>
+</body>
+</html>

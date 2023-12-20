@@ -1,0 +1,26 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+ <h1>User Profile</h1>
+    <h2>Welcome, {{ request.user.username }}</h2>
+
+ <h3>Your Products:</h3>
+{% for product in user_products %}
+    <div class="product">
+        <div class="product-card">
+            <h3>{{ product.name }}</h3>
+            {% with product_image=product.productimage_set.first %}
+                {% if product_image %}
+                    <img src="{{ product_image.image.url }}" alt="{{ product.name }} Image">
+                {% else %}
+                    <img src="{{ request.user.image.url }}" alt="Placeholder Image">
+                {% endif %}
+            {% endwith %}
+            <a href="product/{{ product.id }}/" class="btn">Read more</a>
+            <p>Price: ${{ product.price }}</p>
+        </div>
+    </div>
+{% empty %}
+    <!-- Your empty block content here -->
+{% endfor %}
+{% endblock %}

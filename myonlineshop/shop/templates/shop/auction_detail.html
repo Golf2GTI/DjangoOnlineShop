@@ -1,0 +1,16 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<h2>{{ product.name }}</h2>
+{% for image in product.productimage_set.all %}
+    <img src="{{ image.image.url }}" alt="{{ product.name }} Image">
+{% endfor %}
+<p>{{ product.description }}</p>
+
+{% if current_bid %}
+    <p>Current Bid: ${{ current_bid.bid_amount }}</p>
+    <p>Bidder: {{ current_bid.user.username }}</p>
+{% else %}
+    <p>No bids yet</p>
+{% endif %}
+{% endblock %}

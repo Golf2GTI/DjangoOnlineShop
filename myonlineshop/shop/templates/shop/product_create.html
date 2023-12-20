@@ -1,0 +1,123 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>Add a New Product</h2>
+
+  <form class="product-form" method="post" action="{% url 'product_create' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+       <input type="hidden" id="auction_type" name="auction_type" value="sell"> <!-- This field will hold the selected value -->
+
+    <div class="form-group">
+      <label>Select Sell/Auction:</label>
+      <div class="btn-group" data-toggle="buttons">
+        <button class="btn sell_button" id="sell">Sell</button>
+        <button class="btn auction_button" id="auction">Auction</button>
+      </div>
+    </div>
+    </div>
+    </div>
+    <div class="form-group">
+      <label for="name">Product Name:</label>
+      <input type="text" name="name" required class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea name="description" required class="form-control"></textarea>
+    </div>
+
+     <div class="form-group" id="price_field">
+            <label for="price">Price:</label>
+            <input type="number" name="price" step="0.01" required class="form-control">
+        </div>
+    <div class="form-group" id="auction_fields" style="display: none;">
+      <label for="start_bid">Start Bid:</label>
+      <input type="number" name="start_bid" id="start_bid" step="0.01" class="form-control">
+    </div>
+
+
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <select name="category" required class="form-control">
+        <option value="" selected disabled>Select Category</option>
+        <option value="Pants">Pants</option>
+        <option value="Jacket">Jacket</option>
+        <option value="Sweatshirts & Hoodies">Sweatshirts & Hoodies</option>
+        <option value="Shoes">Shoes</option>
+        <option value="Polo">Polo</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="size">Size:</label>
+      <select name="size" required class="form-control">
+        <option value="" selected disabled>Select Size</option>
+        <option value="XS">Extra Small</option>
+        <option value="S">Small</option>
+        <option value="M">Medium</option>
+        <option value="L">Large</option>
+        <option value="XL">Extra Large</option>
+        <option value="XXL">Double Extra Large</option>
+        <!-- Add more options as needed -->
+      </select>
+    </div>
+<div id="measurements" style="display: none;">
+            <!-- Fields for Pants -->
+            <div class="bottom_measurements">
+            <label for="id_outseam">Outseam:</label>
+            <input type="text" name="outseam" id="id_outseam">
+
+            <label for="id_inseam">Inseam:</label>
+            <input type="text" name="inseam" id="id_inseam">
+
+            <label for="id_waist">Waist:</label>
+            <input type="text" name="waist" id="id_waist">
+
+            <label for="id_bottom">Bottom:</label>
+            <input type="text" name="bottom" id="id_bottom">
+            </div>
+            <!-- Fields for Jacket -->
+            <div class="top_measurements">
+            <label for="id_chest">Chest:</label>
+            <input type="text" name="chest" id="id_chest">
+
+            <label for="id_length">Length:</label>
+            <input type="text" name="length" id="id_length">
+
+            <label for="id_sleeve">Sleeve:</label>
+            <input type="text" name="sleeve" id="id_sleeve">
+            </div>
+            <!-- Add more fields for other categories -->
+        </div>
+
+    <div class="image-upload">
+        <h2>Upload Images</h2>
+        {{ formset.management_form }}
+        <div class="image-forms">
+            {% for form in formset %}
+                <div class="image-form">
+                    {{ form.as_p }}
+                </div>
+            {% endfor %}
+        </div>
+        <button id="add-more-images" type="button">Add More Images</button>
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="tags">Tags:</label>
+      <input type="text" name="tags" placeholder="Add tags (comma-separated)" class="form-control">
+      {% if form.tags.errors %}
+        <p class="error">{{ form.tags.errors }}</p>
+      {% endif %}
+    </div>
+
+    <input type="submit" value="Add Product" class="btn btn-primary">
+  </form>
+
+
+{% endblock %}
+
+
+

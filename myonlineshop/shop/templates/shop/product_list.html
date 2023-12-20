@@ -1,0 +1,126 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% block content %}
+    <div class="store-container">
+        <div class="user-info">
+            {% if user.is_authenticated %}
+                <p>Welcome, <a class='profile_link' href="{% url 'profile' %}">{{ user.username }}!</a></p>
+                <div class="profile_picture {% if user.profile_picture %}show{% else %}hide{% endif %}">
+                    {% if user.profile_picture %}
+                        <img src="{{ user.profile_picture.url }}" alt="{{ user.username }}'s Profile Picture">
+                    {% endif %}
+                </div>
+                <a href="{% url 'cart' %}"><img class="cart_image" src="https://avatars.mds.yandex.net/i?id=646c0e8db2969d5dacf8f0541ab792cba23eac21-9683943-images-thumbs&n=13" alt="cart_image"></a>
+                <p> {{ total_quantity }} </p>
+            {% else %}
+                <p>Welcome to Our Store</p>
+            {% endif %}
+        </div>
+        <div class="switch">
+             <button class="btn" id="switch-view-list-btn"><img src="{% static 'list.svg'%}" alt="" class="list-img"></button>
+            <button class="btn" id="switch-view-slider-btn"><img class='slider-img'src="https://cdn0.iconfinder.com/data/icons/small-v7/512/banner_carrousel_slider_images_ad_promotion-512.png" alt=""></button>
+        </div>
+        <div>
+            <form class="search_form" method="GET" action="{% url 'product_list' %}">
+            <input type="text" name="q" placeholder="Search for products">
+            <button class='btn' type="submit">Search</button>
+            </form>
+        </div>
+        <div class="product_display">
+        <div class="filters">
+            <h3>Filter Options</h3>
+            <form method="GET" action="{% url 'product_list' %}">
+                <div class="filter-option">
+                    <label for="min_price">Min Price:</label>
+                    <input type="number" name="min_price" id="min_price" class="filter-input">
+                </div>
+
+                <div class="filter-option">
+                    <label for="max_price">Max Price:</label>
+                    <input type="number" name="max_price" id="max_price" class="filter-input">
+                </div>
+
+                <div class="filter-option">
+                    <label for="category">Category:</label>
+                    <select name="category" id="category" class="filter-input">
+                        <option value="">--Select Category--</option>
+                        {% for key, value in products.model.CATEGORY_CHOICES %}
+                            <option value="{{ key }}">{{ value }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="filter-option">
+                    <label>Size:</label><br>
+                    <div class="size_div">
+                    {% for key, value in products.model.SIZE_CHOICES %}
+
+                            <input type="checkbox" id="size_{{ key }}" name="sizes" value="{{ key }}" class="styled-checkbox">
+                            <label for="size_{{ key }}" class="checkbox-label">{{ value }}</label><br>
+
+                    {% endfor %}
+                    </div>
+                </div>
+
+                <button type="submit">Apply Filters</button>
+            </form>
+        </div>
+
+       <div class="product-list" id="list" style="display: none;">
+    {% for product in products %}
+        <div class="product-card">
+            <h3>{{ product.name }}</h3>
+            {% with product_image=product.productimage_set.first %}
+                {% if product_image %}
+                    <img src="{{ product_image.image.url }}" alt="{{ product.name }} Image">
+                {% else %}
+                    <!-- Display a placeholder image if no images are available -->
+                    <img src="{% static 'placeholder_image.jpg' %}" alt="Placeholder Image">
+                {% endif %}
+            {% endwith %}
+            <a href="product/{{ product.id }}/" class="btn">Read more</a>
+            <p>Price: ${{ product.price }}</p>
+            <a href="{% url 'add_to_cart' product.id %}" class="btn">Add to Cart</a>
+            <div class="product_user">
+                <a class='profile_link' href="{% url 'profile' %}">{{ product.user.username }}!</a>
+                <div class="profile_picture {% if product.user.profile_picture %}show{% else %}hide{% endif %}">
+                    {% if product.user.profile_picture %}
+                        <img src="{{ product.user.profile_picture.url }}" alt="{{ product.user.username }}'s Profile Picture">
+                    {% endif %}
+                </div>
+                <!-- Add other product details or buttons as needed -->
+            </div>
+        </div>
+    {% endfor %}
+</div>
+        <!-- Slider container -->
+          <div class="slick-slider" id="slider">
+        {% for product in products %}
+        <div class="product-card">
+            <h3>{{ product.name }}</h3>
+            {% with product_image=product.productimage_set.first %}
+                {% if product_image %}
+                    <img src="{{ product_image.image.url }}" alt="{{ product.name }} Image">
+                {% else %}
+                    <!-- Display a placeholder image if no images are available -->
+                    <img src="{% static 'placeholder_image.jpg' %}" alt="Placeholder Image">
+                {% endif %}
+            {% endwith %}
+            <a href="product/{{ product.id }}/" class="btn">Read more</a>
+            <p>Price: ${{ product.price }}</p>
+            <a href="{% url 'add_to_cart' product.id %}" class="btn">Add to Cart</a>
+            <div class="product_user">
+                <a class='profile_link' href="{% url 'profile' %}">{{ product.user.username }}!</a>
+                <div class="profile_picture {% if product.user.profile_picture %}show{% else %}hide{% endif %}">
+                    {% if product.user.profile_picture %}
+                        <img src="{{ product.user.profile_picture.url }}" alt="{{ product.user.username }}'s Profile Picture">
+                    {% endif %}
+                </div>
+                <!-- Add other product details or buttons as needed -->
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<button class="btn" id="change-product-btn">Random Card</button>
+{% endblock %}
