@@ -52,9 +52,7 @@ class ProductListView(ListView):
         context = super().get_context_data(**kwargs)
         cart, created = Cart.objects.get_or_create(user=self.request.user)
         cart_items = cart.cartitem_set.annotate(total_price=Sum('quantity'))
-
         total_quantity = cart_items.aggregate(total_quantity=Sum('quantity'))['total_quantity'] or 0
-
         context['total_quantity'] = total_quantity
         return context
 
@@ -70,7 +68,6 @@ class ProductDetailView(View):
         if product.auction_type == 'auction':
             auction = Auction.objects.get(product=product)
             highest_bid = AuctionBid.objects.filter(auction=auction).order_by('-bid_amount').first()
-
         return render(request, self.template_name, {
             'product': product,
             'bid_form': bid_form,
@@ -111,7 +108,8 @@ def product_create(request):
             if auction_type == 'auction':
                 start_bid = product_form.cleaned_data['start_bid']
                 product.start_bid = start_bid
-                product.price = start_bid  # Set price to start_bid for auctions
+
+
 
             product.save()  # Save the product first
 

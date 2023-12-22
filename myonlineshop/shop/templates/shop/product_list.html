@@ -79,7 +79,12 @@
                 {% endif %}
             {% endwith %}
             <a href="product/{{ product.id }}/" class="btn">Read more</a>
+            {% if product.auction_type == 'auction' %}
+            <p>Start Bid: {{ product.start_bid }}</p>
+            {% else %}
             <p>Price: ${{ product.price }}</p>
+            {% endif %}
+            <p>Type: {{ product.auction_type }}</p>
             <a href="{% url 'add_to_cart' product.id %}" class="btn">Add to Cart</a>
             <div class="product_user">
                 <a class='profile_link' href="{% url 'profile' %}">{{ product.user.username }}!</a>
@@ -106,9 +111,16 @@
                     <img src="{% static 'placeholder_image.jpg' %}" alt="Placeholder Image">
                 {% endif %}
             {% endwith %}
-            <a href="product/{{ product.id }}/" class="btn">Read more</a>
+            <div class="product_get">
+            <a href="{% url 'product_detail' product.id%}" class="btn">Read more</a>
+            {% if product.auction_type == 'auction' %}
+            <p>Start Bid: {{ product.start_bid }}</p>
+            {% else %}
             <p>Price: ${{ product.price }}</p>
+            {% endif %}
+            <p>Type: {{ product.auction_type }}</p>
             <a href="{% url 'add_to_cart' product.id %}" class="btn">Add to Cart</a>
+            </div>
             <div class="product_user">
                 <a class='profile_link' href="{% url 'profile' %}">{{ product.user.username }}!</a>
                 <div class="profile_picture {% if product.user.profile_picture %}show{% else %}hide{% endif %}">

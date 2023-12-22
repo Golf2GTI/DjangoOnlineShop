@@ -12,6 +12,7 @@
     {% endfor %}
     </div>
     <p class="item-description">{{ product.description }}</p>
+    <p class="item-price">Instant buy: {{ product.price }}</p>
        {% if product.auction_type == 'auction' %}
         <!-- Display the bid form only for auction-type products -->
         {% if highest_bid %}
@@ -23,7 +24,7 @@
             <button type="submit">Place Bid</button>
         </form>
 {% endif %}
-    <p class="item-price">Start bid: ${{ product.price }}</p>
+    <p class="item-price">Start bid: ${{ product.start_bid }}</p>
     <p class="item-tags">Tags: {{ product.tags }}</p>
     {% if product.category == 'Pants' %}
       {% if product.outseam or product.inseam or product.waist or product.bottom %}
@@ -56,5 +57,6 @@
       {% endif %}
     {% endif %}
     <!-- Add more conditions for other categories -->
+      <a href="{% url 'add_to_cart' product.id %}" class="btn">Add to Cart</a>
   </div>
 {% endblock %}
