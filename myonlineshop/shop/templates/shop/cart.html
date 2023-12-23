@@ -18,7 +18,11 @@
       <div class="cart_product_info">
       <h3 class="cart_product_name">{{ item.product.name }}</h3>
       <p>{{ item.product.description }}</p>
+        <p>Type: {{ item.product.auction_type }}</p>
       <p> Total: {{ item.total_price }}</p>
+        <p>{% for message in messages %}
+          {{ message }}
+        {% endfor %}</p>
       </div>
       </a>
       <div class="cart_quantity_change">

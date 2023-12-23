@@ -44,6 +44,7 @@ class Product(models.Model):
     length = models.CharField(max_length=10, blank=True, null=True)
     sleeve = models.CharField(max_length=10, blank=True, null=True)
     start_bid = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    quantity = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     auction_type = models.CharField(
         max_length=10,
         choices=AUCTION_TYPE_CHOICES,

@@ -182,8 +182,8 @@ class RemoveFromCartView(RedirectView):
         cart = Cart.objects.get(user=self.request.user)
         cart_item = CartItem.objects.get(cart=cart, product=product)
         if cart_item.quantity > 1:
-            cart_item.quantity -= 1
-            cart_item.save()
+                cart_item.quantity -= 1
+                cart_item.save()
         else:
             cart_item.delete()
         return reverse('cart')
@@ -194,11 +194,14 @@ class AddToCartView(RedirectView):
         product = Product.objects.get(pk=product_id)
         cart, created = Cart.objects.get_or_create(user=self.request.user)
         cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
-        if not created:
+        if not created and product.quantity > cart_item.quantity:
             cart_item.quantity += 1
             cart_item.save()
             return reverse('cart')
-        return reverse('product_list')
+        else:
+            messages.error(self.request,'There are only {{ product.quantity }} items in stock')
+            return reverse('cart')
+
 
 @login_required
 def user_profile(request):

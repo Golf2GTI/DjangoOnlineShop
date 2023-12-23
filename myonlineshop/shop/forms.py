@@ -19,7 +19,7 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ['name', 'description', 'start_bid', 'price','category', 'size', 'image',
-                  'outseam', 'inseam', 'waist', 'bottom', 'chest', 'length', 'sleeve', 'auction_type']
+                  'outseam', 'inseam', 'waist', 'bottom', 'chest', 'length', 'sleeve', 'auction_type', 'quantity']
 
 
 class ProductImageForm(forms.ModelForm):
